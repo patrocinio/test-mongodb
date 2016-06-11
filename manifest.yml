@@ -1,0 +1,8 @@
+applications:
+- name: patrocinio-test-mongodb
+  memory: 256M
+  instances: 1
+  host: patrocinio-test-mongodb
+  domain: mybluemix.net
+  path: .
+  command: node app.js
