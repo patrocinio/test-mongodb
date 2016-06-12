@@ -8,8 +8,9 @@ APP_NAME=patrocinio-test-mongodb
 # $1: app name
 # $2: name
 check_url () {
+set -x
 # Grab URL
-URL=`cf app $APP_NAME | grep urls | awk '{print $2}'`
+URL=`cf app $APP_NAME | grep urls | awk '{print $2}' | cut -f1 -d','`
 
 # Check response
 LINE=`wget --server-response --content-on-error=off ${URL} 2>&1 | grep HTTP`

@@ -7,6 +7,7 @@
 
 // Obtain the mongodb interface from VCAP_SERVICES
 var mongodb = require('mongodb');
+
 if (process.env.VCAP_SERVICES) {
   var env = JSON.parse(process.env.VCAP_SERVICES);
   console.log ("Env: " + JSON.stringify(env))
@@ -144,8 +145,21 @@ var delete_record = function(req, res) {
 // List Records from the books DB
 var list_records = function(req, res) {
 	var MongoClient = require('mongodb').MongoClient;
-    console.log ("uri:" + JSON.stringify(mongo))
-	MongoClient.connect (mongo.uri, function(err, db)   {
+    console.log ("mongo: " + JSON.stringify(mongo))
+    
+    // Build the URL
+    var url = "mongodb://" + mongo.user + ":" + mongo.password + "@" + mongo.uri + ":" + mongo.port + "/mydb";
+    console.log ("url:" + url);
+    
+    MongoClient.connect (url, {
+        mongos: {
+           ssl: true,
+            sslValidate: false,
+            poolSize: 1,
+            reconnectTries: 1
+        },
+    },
+    function(err, db)   {
 		  if(!err) {
 		    console.log("We are connected to DB");
 		  }
