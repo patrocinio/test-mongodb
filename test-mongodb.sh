@@ -4,11 +4,6 @@
 
 APP_NAME=patrocinio-test-mongodb
 
-if [ ! -z "$1" ]
-then
-  APP_NAME=$1
-fi
-
 # Parameters
 # $1: app name
 # $2: name
