@@ -1,7 +1,13 @@
 #/bin/bash
 # Inspired by https://hub.jazz.net/project/communitysample/postgresql-nodejs/overview
+# You need CF CLI before running this script: https://console.ng.bluemix.net/docs/cli/index.html#cli
 
 APP_NAME=patrocinio-test-mongodb
+
+if [ ! -z "$1" ]
+then
+  APP_NAME=$1
+fi
 
 # Parameters
 # $1: app name
