@@ -5,3 +5,5 @@ applications:
   domain: mybluemix.net
   path: .
   command: node app.js
+  services:
+  - "mongodb"
