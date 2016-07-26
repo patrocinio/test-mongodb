@@ -148,7 +148,7 @@ var list_records = function(req, res) {
     console.log ("mongo: " + JSON.stringify(mongo))
     
     // Build the URL
-    var url = "mongodb://" + mongo.user + ":" + mongo.password + "@" + mongo.uri + ":" + mongo.port + "/mydb";
+    var url = mongo.credentials;
     console.log ("url:" + url);
     
     MongoClient.connect (url, {
